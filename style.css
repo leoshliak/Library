@@ -1,0 +1,49 @@
+*{
+ padding: 0;
+ margin: 0;
+}
+
+@font-face{
+    font-family: Rubik;
+    src: url(New_Folder/Rubik-Medium.ttf);
+}
+
+body{
+    font-size: 18px;
+    font-family: 'Rubik', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.header{
+    width: 95%;
+    height: 120px;
+    background-color: white;
+    border-bottom: 1px solid grey;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+.header p{
+    font-size: 2.2em;
+    font-weight: 600;
+    letter-spacing: 1.6px;
+}
+.header button{
+    width: 150px;
+    height: 55px;
+    font-size: 1.3em;
+    font-weight: 600;
+    border-radius: 15px;
+    border: 1px solid #CFCFCF;
+    background-color: #e6e4e4;
+}
+
+.header button:hover{
+    cursor: pointer;
+    background-color: #b9b9b9;
+}
