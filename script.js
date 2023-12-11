@@ -24,7 +24,9 @@
     if (e.target.classList.contains("read-green")) {
       unRead(e.target);
     }
-    
+    if(e.target.classList.contains("delete")){
+      DeleteCard(e.target);
+    }
   });
 
   function unRead(btn) {
@@ -36,14 +38,25 @@
       btn.textContent = 'Not read';
     };
   };
+   
 
-  function DeleteCard(element){
-    const divRemove = document.getElementById(element.parentNode.id);
-    cardGrid.removeChild(divRemove);
-    myLibrary.splice(divRemove.id, 1);
-    updateId();
+  function DeleteCard(element) {
+    const parentCard = element.closest('.book-card');
+    if (parentCard) {
+      const divRemove = document.getElementById(parentCard.id);
+      const indexToRemove = parseInt(divRemove.id, 10); // Convert id to a number
+      myLibrary.splice(indexToRemove, 1);
+      cardGrid.removeChild(divRemove);
+      updateId();
+    }
   }
 
+  function updateId(){
+    const allBookCards = document.querySelectorAll('.book-card');
+    for(let i = 0; i < allBookCards.length; i++){
+        allBookCards[i].id = i;
+    }
+  }
 
 const myLibrary = [];
 
@@ -67,6 +80,7 @@ function addBookToLibrary() {
  function CreateCard(){
   const cardDiv = document.createElement('div');
   cardDiv.classList.add('book-card');
+  cardDiv.setAttribute('id', myLibrary.length-1);
   const titleH3 = document.createElement('h3');
   titleH3.textContent = myLibrary[myLibrary.length - 1].title;
   const authorDate = document.createElement('p');
@@ -80,6 +94,7 @@ function addBookToLibrary() {
       ReadCheck.classList.add('read-green');
       ReadCheck.textContent = 'Read'
    } else{
+    ReadCheck.classList.add('read-green');
     ReadCheck.classList.add('notRead-red');
     ReadCheck.textContent = 'Not read';
    }
