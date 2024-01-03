@@ -28,7 +28,7 @@
       DeleteCard(e.target);
     }
   });
-
+  
   function unRead(btn) {
     if (btn.classList.contains("notRead-red")) {
       btn.classList.remove("notRead-red");
@@ -58,26 +58,27 @@
     }
   }
 
-const myLibrary = [];
+ const myLibrary = [];
 
-function Book(title, author, published ,pages, read){
-   this.title = title;
-   this.author = author;
-   this.published = published;
-   this.pages = pages;
-   this.read = read;
-}
+ class Book{
+  constructor (title, author, published ,pages, read){
+    this.title = title;
+    this.author = author;
+    this.published = published;
+    this.pages = pages;
+    this.read = read;
+  }
 
-function addBookToLibrary() {
+  addBookToLibrary(){
     const title = BookTitle.value;
     const author = BookAuthor.value;
     const published = BookPub.value;
     const pages = BookPages.value;
     const read = BookRead.checked;
      myLibrary.push(new Book(title, author, published ,pages, read));
-}
+  }
 
- function CreateCard(){
+CreateCard(){
   const cardDiv = document.createElement('div');
   cardDiv.classList.add('book-card');
   cardDiv.setAttribute('id', myLibrary.length-1);
@@ -109,12 +110,15 @@ function addBookToLibrary() {
    buttonDiv.appendChild(ReadCheck);
    buttonDiv.appendChild(deleteBtn);
  }
-  
+ } 
+    const newBook = new Book({
+      
+    });
 
  form.addEventListener('submit', () =>{
   event.preventDefault();
-  addBookToLibrary();
-  CreateCard();
+  newBook.addBookToLibrary();
+  newBook.CreateCard();
   form.reset();
  });
  
